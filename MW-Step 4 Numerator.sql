@@ -1,4 +1,4 @@
-create or replace table `wmt-mint-mmr-mw-prod.mw_numerator_dev.mw_numerator_FY26Mar` as -- update name
+create or replace table `wmt-mint-mmr-mw-prod.mw_numerator_dev.mw_numerator_FY26Feb` as -- update name
 -- step1 offline d82 sales
 with d82 as (
 select 
@@ -21,7 +21,7 @@ store_breakout,
 brand_breakout,
 -- sales
 sum(total_sales) as wm_sales
-from `wmt-mint-mmr-mw-prod.mw_numerator_dev.offline_sales_FY26Mar_breakout` as a -- update name -- sales, wmt hierarchy
+from `wmt-mint-mmr-mw-prod.mw_numerator_dev.offline_sales_FY26Feb_breakout` as a -- update name -- sales, wmt hierarchy
 inner join `wmt-mint-mmr-mw-prod.MMR_numerator.lkp_nielsen_upc_mapping_FY26Feb` as b -- update name -- nlsn upc, upc to mmr id
 on a.upc_nbr = b.upc
 and acctg_dept_nbr = 82 -- filter for d82 sales
@@ -52,7 +52,7 @@ store_breakout,
 brand_breakout,
 -- sales
 sum(total_sales) as wm_sales
-from `wmt-mint-mmr-mw-prod.mw_numerator_dev.offline_sales_FY26Mar_breakout` -- update name -- sales, wmt hierarchy
+from `wmt-mint-mmr-mw-prod.mw_numerator_dev.offline_sales_FY26Feb_breakout` -- update name -- sales, wmt hierarchy
 where acctg_dept_nbr != 82 -- filter for non d82 sales
 group by 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
 order by 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
@@ -81,7 +81,7 @@ case when chnl in ("PUT", "Pickup") then "Y" else "N" end as `PICKUP_FLAG`,
 brand_breakout,
 -- sales
 sum(gmv_actl) as wm_sales
-from `wmt-mint-mmr-mw-prod.mw_numerator_dev.online_sales_FY26Mar_breakout` -- update name -- sales, wmt hierarchy
+from `wmt-mint-mmr-mw-prod.mw_numerator_dev.online_sales_FY26Feb_breakout` -- update name -- sales, wmt hierarchy
 where chnl in ("Delivery", "Pickup", "PUT", "S2H", "SFS", "MP") -- filter for online channels
 group by 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
 order by 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
@@ -171,7 +171,7 @@ sum(wm_sales) as wm_sales
 from total_sales as a
 inner join `wmt-mint-mmr-mw-prod.new_mw_numerator_dev.mw_dept_mapping` as b
 on a.acctg_dept_nbr = b.acctg_dept_nbr
-left join `wmt-mint-mmr-mw-prod.mw_numerator_dev.mw_hierarchy_adjustment_FY26Mar` as c -- update
+left join `wmt-mint-mmr-mw-prod.mw_numerator_dev.mw_hierarchy_adjustment_FY26Feb` as c -- update
 on a.acctg_dept_nbr = c.acctg_dept_nbr
 and a.catg_grp_desc = c.catg_grp_desc
 and a.catg_desc = c.catg_desc
