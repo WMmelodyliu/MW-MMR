@@ -1,12 +1,12 @@
 -- 2a full hierarchy
 -- hierarchy = offline + online + history
-create or replace table `wmt-mint-mmr-mw-prod.mw_numerator_dev.mw_hierarchy_FY25Jan` as -- update name
+create or replace table `wmt-mint-mmr-mw-prod.mw_numerator_dev.mw_hierarchy_FY26Feb` as -- update name
 select distinct *
 from (select distinct acctg_dept_nbr, acctg_dept_desc, dept_catg_grp_nbr, dept_catg_grp_desc, dept_catg_nbr, dept_catg_desc, dept_subcatg_nbr, dept_subcatg_desc
-from `wmt-mint-mmr-mw-prod.mw_numerator_dev.offline_sales_FY25Jan_breakout` -- update name
+from `wmt-mint-mmr-mw-prod.mw_numerator_dev.offline_sales_FY26Feb_breakout` -- update name
 union distinct
 select distinct acctg_dept_nbr, acctg_dept_desc, dept_catg_grp_nbr, dept_catg_grp_desc, dept_catg_nbr, dept_catg_desc, dept_subcatg_nbr, dept_subcatg_desc
-from `wmt-mint-mmr-mw-prod.mw_numerator_dev.online_sales_FY25Jan_breakout`) -- update name
+from `wmt-mint-mmr-mw-prod.mw_numerator_dev.online_sales_FY26Feb_breakout`) -- update name
 union distinct
 select *
 from `wmt-mint-mmr-mw-prod.mw_numerator_dev.mw_hierarchy_FY25Jan`; -- update name
@@ -16,7 +16,7 @@ from `wmt-mint-mmr-mw-prod.mw_numerator_dev.mw_hierarchy_FY25Jan`; -- update nam
 with hierarchy as (
 select distinct sbu, bu, department, a.acctg_dept_nbr, catg_grp_desc, catg_desc, subcatg_desc
 from (select distinct acctg_dept_nbr, dept_catg_grp_nbr as catg_grp_nbr, dept_catg_nbr as catg_nbr, dept_subcatg_nbr as subcatg_nbr, dept_catg_grp_desc as catg_grp_desc, dept_catg_desc as catg_desc, dept_subcatg_desc as subcatg_desc
-from `wmt-mint-mmr-mw-prod.mw_numerator_dev.mw_hierarchy_FY25Jan` -- update name
+from `wmt-mint-mmr-mw-prod.mw_numerator_dev.mw_hierarchy_FY26Feb` -- update name
 except distinct
 select distinct acctg_dept_nbr, dept_catg_grp_nbr as catg_grp_nbr, dept_catg_nbr as catg_nbr, dept_subcatg_nbr as subcatg_nbr, dept_catg_grp_desc as catg_grp_desc, dept_catg_desc as catg_desc, dept_subcatg_desc as subcatg_desc
 from `wmt-mint-mmr-mw-prod.mw_numerator_dev.mw_hierarchy_FY25Jan` -- update name
