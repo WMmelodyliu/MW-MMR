@@ -1,25 +1,25 @@
 -- 2a full hierarchy
 -- hierarchy = offline + online + history
-create or replace table `wmt-mint-mmr-mw-prod.mw_numerator_dev.mw_hierarchy_FY26Mar` as -- update name
+create or replace table `wmt-mint-mmr-mw-prod.mw_numerator_dev.mw_hierarchy_FY25Jan` as -- update name
 select distinct *
 from (select distinct acctg_dept_nbr, acctg_dept_desc, dept_catg_grp_nbr, dept_catg_grp_desc, dept_catg_nbr, dept_catg_desc, dept_subcatg_nbr, dept_subcatg_desc
-from `wmt-mint-mmr-mw-prod.mw_numerator_dev.offline_sales_FY26Mar_breakout` -- update name
+from `wmt-mint-mmr-mw-prod.mw_numerator_dev.offline_sales_FY25Jan_breakout` -- update name
 union distinct
 select distinct acctg_dept_nbr, acctg_dept_desc, dept_catg_grp_nbr, dept_catg_grp_desc, dept_catg_nbr, dept_catg_desc, dept_subcatg_nbr, dept_subcatg_desc
-from `wmt-mint-mmr-mw-prod.mw_numerator_dev.online_sales_FY26Mar_breakout`) -- update name
+from `wmt-mint-mmr-mw-prod.mw_numerator_dev.online_sales_FY25Jan_breakout`) -- update name
 union distinct
 select *
-from `wmt-mint-mmr-mw-prod.mw_numerator_dev.mw_hierarchy_FY26Feb`; -- update name
+from `wmt-mint-mmr-mw-prod.mw_numerator_dev.mw_hierarchy_FY25Jan`; -- update name
 
 -- 2b new hierarchy and adjustment
 -- new hierarchy = hierarchy - history hierarchy
 with hierarchy as (
 select distinct sbu, bu, department, a.acctg_dept_nbr, catg_grp_desc, catg_desc, subcatg_desc
 from (select distinct acctg_dept_nbr, dept_catg_grp_nbr as catg_grp_nbr, dept_catg_nbr as catg_nbr, dept_subcatg_nbr as subcatg_nbr, dept_catg_grp_desc as catg_grp_desc, dept_catg_desc as catg_desc, dept_subcatg_desc as subcatg_desc
-from `wmt-mint-mmr-mw-prod.mw_numerator_dev.mw_hierarchy_FY26Mar` -- update name
+from `wmt-mint-mmr-mw-prod.mw_numerator_dev.mw_hierarchy_FY25Jan` -- update name
 except distinct
 select distinct acctg_dept_nbr, dept_catg_grp_nbr as catg_grp_nbr, dept_catg_nbr as catg_nbr, dept_subcatg_nbr as subcatg_nbr, dept_catg_grp_desc as catg_grp_desc, dept_catg_desc as catg_desc, dept_subcatg_desc as subcatg_desc
-from `wmt-mint-mmr-mw-prod.mw_numerator_dev.mw_hierarchy_FY26Feb` -- update name
+from `wmt-mint-mmr-mw-prod.mw_numerator_dev.mw_hierarchy_FY25Jan` -- update name
 ) as a
 inner join `wmt-mint-mmr-mw-prod.new_mw_numerator_dev.mw_dept_mapping` as b
 on a.acctg_dept_nbr = b.acctg_dept_nbr
