@@ -22,7 +22,7 @@ WHERE (WM_YEAR_NBR, WM_MONTH_NBR) NOT IN (
 UNION DISTINCT
 
 SELECT *
-FROM wmt-mint-mmr-mw-prod.mw_numerator_dev.mw_numerator_FY26Mar --update
+FROM wmt-mint-mmr-mw-prod.mw_numerator_dev.mw_numerator_FY26Feb --update
 ORDER BY 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13;
        
 
