@@ -5,6 +5,14 @@ from wmt-mint-mmr-mw-prod.mw_numerator_dev.mw_numerator_FY26Feb
 group by 1, 2
 order by 1, 2
 */
+/*
+-- the latest 4 months
+SELECT distinct WM_YEAR_NBR, WM_MONTH_NBR
+FROM wmt-mint-mmr-mw-prod.mw_numerator_dev.mw_numerator_FY26Feb
+ORDER BY WM_YEAR_NBR DESC, WM_MONTH_NBR DESC
+LIMIT 4
+
+*/
 
 --2nd FY26Feb and historical data
 create or replace table wmt-mint-mmr-mw-prod.mw_numerator_dev.mw_numerator_FY26Feb_Total --update
