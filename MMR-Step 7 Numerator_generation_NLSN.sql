@@ -1,3 +1,4 @@
+#4a
 CREATE OR REPLACE TABLE
   `wmt-mint-mmr-mw-prod.merch_mw_numerator.non_d82_sales_reg` AS
 SELECT
