@@ -41,7 +41,7 @@ left join
 	from 
 	(
 		select UPC as upc ,MMR_HIER_ID,MMR_DEPT,MMR_CATEGORY_GROUP,MMR_CATEGORY,ITEM_DESC -- upc number was loaded as string ---changed
-		 from `wmt-mint-mmr-mw-prod.MMR_numerator.lkp_nielsen_upc_mapping_FY26Feb44` -- UPDATE -- check if nlsn mapping is corrected for next month file ## check
+		 from `wmt-mint-mmr-mw-prod.MMR_numerator.lkp_nielsen_upc_mapping_FY26Mar` -- UPDATE -- check if nlsn mapping is corrected for next month file ## check
 -- lkp_nielsen_upc_mapping_fy25Feb_new
 		where mmr_hier_id not in ('MMR000000','MMR510000')
  	) t1
