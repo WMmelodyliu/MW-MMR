@@ -36,7 +36,7 @@ left join
 (select upc as upc_cd, max(t1.mmr_hier_id) as r_mmr_hier_id, max(department_builder) as department_builder 
 	from 
 	(
-		select * from `wmt-mint-mmr-mw-prod.MMR_numerator.lkp_nielsen_upc_mapping_FY26Feb44` -- UPDATE ## delay at nielsen for upc in aug, hence using prev month upc
+		select * from `wmt-mint-mmr-mw-prod.MMR_numerator.lkp_nielsen_upc_mapping_FY26Mar` -- UPDATE ## delay at nielsen for upc in aug, hence using prev month upc
 -- lkp_nielsen_upc_mapping_fy25Feb_new
 
 		where mmr_hier_id not in ('MMR000000','MMR510000')
