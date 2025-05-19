@@ -1322,7 +1322,7 @@ FROM (
           '3_29',
           '3_34',
           '3_39',
-          '3_45',
+         
           '3_48',
           '3_52',
           '3_53',
@@ -1370,7 +1370,7 @@ FROM (
           '3_29',
           '3_34',
           '3_39',
-          '3_45',
+          
           '3_48',
           '3_52',
           '3_53',
@@ -1416,7 +1416,7 @@ SELECT
   Department,
   CASE
     WHEN Department IN ("CLOTHING","AUTOMOTIVE","CAMERAS AND SUPPLIES", "ELECTRONICS","FURNITURE","HANDBAGS AND ACCESSORIES",
-    "HOME IMPROVEMENT","KITCHEN","MEDIA AND GAMING", "PIECE GOODS AND CRAFTS", "SPORTING GOODS","STATIONERY", "TOYS","WIRELESS") 
+    "HOME IMPROVEMENT","KITCHEN","MEDIA AND GAMING",  "SPORTING GOODS","STATIONERY", "TOYS","WIRELESS") 
     AND Channel="Total" THEN Category_Group
     WHEN reporting_level="DEPARTMENT_TOTAL"
   AND Channel IN ("Total",
@@ -1428,7 +1428,7 @@ END
   AS Category_Group,
   CASE
     WHEN Department IN ("CLOTHING","AUTOMOTIVE","CAMERAS AND SUPPLIES", "ELECTRONICS","FURNITURE","HANDBAGS AND ACCESSORIES",
-    "HOME IMPROVEMENT","KITCHEN","MEDIA AND GAMING", "PIECE GOODS AND CRAFTS", "SPORTING GOODS","STATIONERY", "TOYS","WIRELESS") 
+    "HOME IMPROVEMENT","KITCHEN","MEDIA AND GAMING",  "SPORTING GOODS","STATIONERY", "TOYS","WIRELESS") 
     AND Channel="Total" THEN Category_Group
     WHEN reporting_level="DEPARTMENT_TOTAL"
   AND Channel IN ("Total",
